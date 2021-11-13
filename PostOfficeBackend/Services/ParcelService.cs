@@ -37,8 +37,8 @@ namespace PostOfficeBackend.Services
             await _parcelRepository.GetByIdAsync(id);
 
 
-        public async Task<List<Parcel>> GetByPostIdAsync(int id) =>
-            await _parcelRepository.GetByPostIdAsync(id);
+        public async Task<List<Parcel>> GetByPostIdAsync(int postId) =>
+            await _parcelRepository.GetByPostIdAsync(postId);
 
 
         public async Task RemoveAsync(int id)

@@ -10,5 +10,6 @@ export interface ParcelModel {
 
 export interface Post {
     id: number,
-    name: string
+    name: string,
+    code: string
 };

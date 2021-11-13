@@ -56,14 +56,14 @@ export class PostsComponent implements OnInit {
     this.hideMode = true;
   }
 
-  deletePost(id: number): void {
+  public deletePost(id: number): void {
     this.postsService.deletePost(id).subscribe(() => {
       let index = this.posts.map(p => p.id).indexOf(id);
       this.posts.splice(index, 1);
     })
   }
 
-  loadPost(post: PostModel): void {
+  public loadPost(post: PostModel): void {
 
     this.hideMode = false;
     this.editMode = true;
@@ -75,7 +75,7 @@ export class PostsComponent implements OnInit {
     this.code = post.code;
   }
 
-  sendUpdatedPost(): void {
+  public sendUpdatedPost(): void {
     var updatedValue: PostModel = {
       id: this.id,
       name: this.name,
@@ -94,7 +94,7 @@ export class PostsComponent implements OnInit {
     this.editMode = false;
   }
 
-  resetValues(): void {
+  public resetValues(): void {
     this.name = "";
     this.town = "";
     this.capacity = null;

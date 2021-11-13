@@ -7,11 +7,11 @@
         <button type="submit" class="btn btn-secondary" *ngIf="hideMode" (click)="hideMode = false">Pridėti
             siuntą</button>
         <div [hidden]="hideMode == false">
-            <label>Filtruoti siuntas pagal paštomatą</label>
+            <label>Filtruoti siuntas pagal paštomato kodą</label>
             <select class="form-control" [(ngModel)]="postSelected" (ngModelChange)="onPostSelected($event)">
                 <option [value]="0">Visi</option>
                 <option *ngFor="let post of posts" [value]="post.id">
-                    {{post.name}}
+                    {{post.code}}
                 </option>
             </select>
         </div>
@@ -68,7 +68,7 @@
                     <th>Siuntos svoris</th>
                     <th>Telefono numeris</th>
                     <th>Siuntos informacija</th>
-                    <th>Paštomatas</th>
+                    <th>Paštomato kodas</th>
                     <th>Veiksmai</th>
                 </tr>
             </thead>
@@ -80,7 +80,7 @@
                     <td>{{parcel.weight}} Kg</td>
                     <td>{{parcel.phone}}</td>
                     <td>{{parcel.info}}</td>
-                    <td>"{{parcel.post.name}}"</td>
+                    <td>{{parcel.post.code}}</td>
                     <td> <button type="button" class="btn btn-danger btn-sm"
                             (click)="deleteParcel(parcel.id)">Ištrinti</button>
                         <button type="button" class="btn btn-warning btn-sm"

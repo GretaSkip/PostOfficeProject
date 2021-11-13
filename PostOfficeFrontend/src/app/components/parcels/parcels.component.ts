@@ -36,6 +36,7 @@ export class ParcelsComponent implements OnInit {
 
   public hideMode: boolean = true;
   public editMode: boolean = false;
+  public disabledMode: boolean = true;
 
   ngOnInit(): void {
     this.getData();
@@ -54,17 +55,14 @@ export class ParcelsComponent implements OnInit {
     })
   }
 
-  // horseUpdated(value: string): void {
-  //   this.getHorsesData();
-  // }
-
   public onPostSelected(selectedPostId: number): void {
-    if (selectedPostId == 0) {
+    if (selectedPostId !== 0) {
+      this.parcelsService.getParcelsByPost(selectedPostId).subscribe((parcelsFromApi) => {
+        this.parcels = parcelsFromApi;
+      })
+    } if (selectedPostId == 0) {
       this.getData();
     }
-    this.parcelsService.getParcelsByPost(selectedPostId).subscribe((parcelsFromApi) => {
-      this.parcels = parcelsFromApi;
-    })
   }
 
   public addParcel(): void {
@@ -89,14 +87,14 @@ export class ParcelsComponent implements OnInit {
 
   }
 
-  deleteParcel(id: number): void {
+  public deleteParcel(id: number): void {
     this.parcelsService.deleteParcel(id).subscribe(() => {
       let index = this.parcels.map(p => p.id).indexOf(id);
       this.parcels.splice(index, 1);
     })
   }
 
-  loadParcel(parcel: ParcelModel): void {
+  public loadParcel(parcel: ParcelModel): void {
 
     this.hideMode = false;
     this.editMode = true;
@@ -109,7 +107,7 @@ export class ParcelsComponent implements OnInit {
     this.postId = parcel.postId;
   }
 
-  sendUpdatedParcel(): void {
+  public sendUpdatedParcel(): void {
     var updatedValue: ParcelCreateEditModel = {
       id: this.id,
       recipient: this.recipient,
@@ -130,7 +128,7 @@ export class ParcelsComponent implements OnInit {
 
   }
 
-  resetValues(): void {
+  public resetValues(): void {
     this.recipient = "";
     this.weight = null;
     this.phone = "";

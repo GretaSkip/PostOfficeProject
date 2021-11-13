@@ -24,8 +24,8 @@ namespace PostOfficeBackend.Repositories
             await _context.Parcels.FirstOrDefaultAsync(p => p.Id == id);
 
 
-        public async Task<List<Parcel>> GetByPostIdAsync(int id) =>
-            await _context.Parcels.Include(r => r.Post).Where(p => p.PostId == id).ToListAsync();
+        public async Task<List<Parcel>> GetByPostIdAsync(int postId) =>
+            await _context.Parcels.Include(r => r.Post).Where(p => p.PostId == postId).ToListAsync();
 
 
         public async Task<int> CreateAsync(Parcel parcel)
