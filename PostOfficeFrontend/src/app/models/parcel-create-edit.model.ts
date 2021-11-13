@@ -4,5 +4,5 @@ export interface ParcelCreateEditModel {
     weight: number,
     phone: string,
     info: string,
-    postId: string
+    postId: number
 };

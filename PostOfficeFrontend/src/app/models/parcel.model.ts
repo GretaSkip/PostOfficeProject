@@ -4,7 +4,7 @@ export interface ParcelModel {
     weight: number,
     phone: string,
     info: string,
-    postId: string,
+    postId: number,
     post: Post
 };
 

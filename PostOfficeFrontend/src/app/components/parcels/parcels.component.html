@@ -1,1 +1,93 @@
-<p>parcels works!</p>
+<div>
+    <div>
+        <h4>Siuntos</h4>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-secondary" *ngIf="hideMode" (click)="hideMode = false">Pridėti
+            siuntą</button>
+        <div [hidden]="hideMode == false">
+            <label>Filtruoti siuntas pagal paštomatą</label>
+            <select class="form-control" [(ngModel)]="postSelected" (ngModelChange)="onPostSelected($event)">
+                <option [value]="0">Visi</option>
+                <option *ngFor="let post of posts" [value]="post.id">
+                    {{post.name}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div [hidden]="hideMode">
+        <h6>Užpildykite siuntos informaciją:</h6>
+        <div class="form-group">
+            <label>Gavėjas</label>
+            <input type="text" class="form-control" placeholder="Įvesti gavėjo vardą ir pavardę" [(ngModel)]="recipient">
+        </div>
+        <div class="form-group">
+            <label>Svoris kg</label>
+            <input type="text" class="form-control" placeholder="Įvesti siuntos svorį" [(ngModel)]="weight">
+        </div>
+        <div class="form-group">
+            <label>Gavėjo telefono numeris</label>
+            <input type="text" class="form-control" placeholder="Įvesti telefono numerį" [(ngModel)]="phone">
+        </div>
+        <div class="form-group">
+            <label>Siuntos informacija</label>
+            <input type="text" class="form-control" placeholder="Įvesti siuntos informaciją" [(ngModel)]="info">
+        </div>
+
+        <div class="form-group">
+            <label>Paštomatas į kurį siunčiama</label>
+
+            <select class="form-control" [(ngModel)]="postId">
+                <option disabled>Pasirinkti...</option>
+                <option *ngFor="let post of posts" [value]="post.id">
+                    {{post.name}}
+                </option>
+            </select>
+
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" *ngIf="editMode == false"
+                (click)="addParcel()">Pridėti</button>
+            <button type="submit" class="btn btn-secondary" *ngIf="editMode == false" (click)="hideMode = true">Slėpti
+                formą</button>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" *ngIf="editMode == true"
+                (click)="sendUpdatedParcel()">Koreguoti</button>
+        </div>
+    </div>
+    <div>
+        <table class="table border border-light">
+
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Gavėjas</th>
+                    <th>Siuntos svoris</th>
+                    <th>Telefono numeris</th>
+                    <th>Siuntos informacija</th>
+                    <th>Paštomatas</th>
+                    <th>Veiksmai</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let parcel of parcels; index as i">
+                    <th>{{ i + 1 }}</th>
+                    <td>{{parcel.recipient}}</td>
+                    <td>{{parcel.weight}} Kg</td>
+                    <td>{{parcel.phone}}</td>
+                    <td>{{parcel.info}}</td>
+                    <td>"{{parcel.post.name}}"</td>
+                    <td> <button type="button" class="btn btn-danger btn-sm"
+                            (click)="deleteParcel(parcel.id)">Ištrinti</button>
+                        <button type="button" class="btn btn-warning btn-sm"
+                            (click)="loadParcel(parcel)">Koreguoti</button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
