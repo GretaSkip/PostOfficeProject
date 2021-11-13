@@ -1,0 +1,20 @@
+<nav class="navbar sticky-top navbar-light">
+    <div class="container-lg">
+        <a class="navbar-brand">Pašto tarnybos puslapis</a>
+      <div class="navbar-nav d-flex flex-row">
+        <div
+          routerLinkActive="current"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="px-3 py-2"
+          >
+          <a class="nav-link" routerLink="">Pagrindinis puslapis</a>
+        </div>
+        <div routerLinkActive="current" class="px-3 py-2">
+            <a class="nav-link" routerLink="/parcels">Siuntos</a>
+          </div>
+        <div routerLinkActive="current" class="px-3 py-2">
+          <a class="nav-link" routerLink="/posts">Paštomatai</a>
+        </div>
+      </div>
+    </div>
+  </nav>

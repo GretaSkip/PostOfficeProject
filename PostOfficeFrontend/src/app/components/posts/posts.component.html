@@ -1,0 +1,68 @@
+<div>
+    <div>
+        <h4>Paštomatai</h4>
+    </div>
+    <div>
+        <button type="button" class="btn btn-secondary" *ngIf="hideMode" (click)="hideMode = false">Pridėti
+            paštomatą</button>
+    </div>
+
+    <div [hidden]="hideMode">
+        <h6>Užpildykite paštomato informaciją:</h6>
+        <div class="form-group">
+            <label>Pavadinimas</label>
+            <input type="text" class="form-control" placeholder="Įvesti paštomato pavadinimą" [(ngModel)]="name">
+        </div>
+        <div class="form-group">
+            <label>Miestas</label>
+            <input type="text" class="form-control" placeholder="Įvesti miestą" [(ngModel)]="town">
+        </div>
+        <div class="form-group">
+            <label>Paštomato siuntų talpa</label>
+            <input type="text" class="form-control" placeholder="Įvesti paštomato talpą" [(ngModel)]="capacity">
+        </div>
+        <div class="form-group">
+            <label>Kodas</label>
+            <input type="text" class="form-control" placeholder="Įvesti paštomato kodą" [(ngModel)]="code">
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" *ngIf="editMode == false"
+                (click)="addPost()">Pridėti</button>
+            <button type="button" class="btn btn-secondary" *ngIf="editMode == false" (click)="hideMode = true">Slėpti
+                formą</button>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" *ngIf="editMode == true"
+                (click)="sendUpdatedPost()">Koreguoti</button>
+        </div>
+    </div>
+
+    <div>
+        <table class="table border border-light">
+
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Pavadinimas</th>
+                    <th>Miestas</th>
+                    <th>Paštomato talpa</th>
+                    <th>Kodas</th>
+                    <th>Veiksmai</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let post of posts; index as i">
+                    <th>{{ i + 1 }}</th>
+                    <td>"{{post.name}}"</td>
+                    <td>{{post.town}}</td>
+                    <td>{{post.capacity}} vnt.</td>
+                    <td>{{post.code}}</td>
+                    <td> <button type="button" class="btn btn-danger btn-sm" (click)="deletePost(post.id)">Ištrinti</button>
+                        <button type="button" class="btn btn-warning btn-sm" (click)="loadPost(post)">Koreguoti</button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>

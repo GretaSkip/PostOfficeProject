@@ -28,7 +28,7 @@ namespace PostOfficeBackend.Controllers
         }
 
         [HttpGet]
-        [Route("BettersbyPost/{postId}")]
+        [Route("ParcelsbyPost/{postId}")]
         public async Task<ActionResult> GetByPostId(int postId)
         {
             var better = await _parcelService.GetByPostIdAsync(postId);
